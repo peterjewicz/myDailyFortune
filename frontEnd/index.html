@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Fortune Of The Day</title>
+        <link href="https://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
+        <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="mainWrapper">
+            <img src="logo.png" class="logo" alt="My Daily Fortune"  width="300px"/>
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <div class="fortuneWrapper">
+                <div class="holder">
+                    <div class="fortuneText">
+                        <div class="leftOverlay"></div>
+                        <div class="rightOverlay"></div>
+                        <p class="fortune"></p>
+                        <p class="numbers">5 12 56 43 17</p>
+                    </div>
+                    <img class="left" src="left.png" />
+                    <img class="right" src="right.png" />
+                </div>
+                <div class="clearFix"></div>
+            </div>
+        </div>
+        <script  src="js/jQuery.js"></script>
+        <script type="text/javascript" src="js/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
+        <script>
+        jQuery(document).ready(function(){
+            // $('p').click(function(){
+            //     $('.fortuneText').toggleClass('back');
+            //     $('.left').toggleClass('back');
+            //     $('.right').toggleClass('back');
+            // })
+            $('body').click(function(){
+                var audio = new Audio('cookie.wav');
+                audio.play();
+                $('.left').addClass('open');
+                $('.right').addClass('open');
+                $('.leftOverlay').addClass('open');
+                $('.rightOverlay').addClass('open');
+            });
+
+
+            $(".fortuneWrapper").swipe( {
+                //Generic swipe handler for all directions
+                swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                  if(direction == "up"){
+                      $('.fortuneText').addClass('back');
+                      $('.left').addClass('back');
+                      $('.right').addClass('back');
+                  }
+                  else if(direction == "down"){
+                      $('.fortuneText').removeClass('back');
+                      $('.left').removeClass('back');
+                      $('.right').removeClass('back');
+                  }
+                }
+            });
+
+             $.ajax({
+                type: "POST",
+                url:"http://localhost:3000/fortune",
+                dataType: "json",
+                success:function(data) {
+                  var data = data[0];
+                  $('.fortune').text(data.message);
+                }
+              });
+        });
+        </script>
+    </body>
+</html>
