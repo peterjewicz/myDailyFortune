@@ -1,2 +1,1 @@
-
-web: java $JVM_OPTS -cp target/fortune-cookie.jar clojure.main -m fortune-cookie.web
+web: java $JVM_OPTS -cp target/uberjar/fortune-cookie.jar clojure.main -m fortune-cookie.core
