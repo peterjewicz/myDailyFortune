@@ -12,18 +12,26 @@
     </head>
     <body>
         <div id="mainWrapper">
-            <img src="logo.png" class="logo" alt="My Daily Fortune"  width="300px"/>
-            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <!-- <img src="logo.png" class="logo" alt="My Daily Fortune"  width="300px"/> -->
+            <!-- <i class="fa fa-info-circle" aria-hidden="true"></i> -->
             <div class="fortuneWrapper">
                 <div class="holder">
+                    <h2 class="alreadyViewed">You've Already Read Your Fortune Today</h2>
                     <div class="fortuneText">
                         <div class="leftOverlay"></div>
                         <div class="rightOverlay"></div>
                         <p class="fortune"></p>
-                        <p class="numbers">5 12 56 43 17</p>
+                        <p class="numbers">
+                            <span class="number1"></span>
+                            <span class="number2"></span>
+                            <span class="number3"></span>
+                            <span class="number4"></span>
+                            <span class="number5"></span>
+                        </p>
                     </div>
                     <img class="left" src="left.png" />
                     <img class="right" src="right.png" />
+                    <div class="swipeText"><i class="fa fa-angle-double-up" aria-hidden="true"></i></br>Swipe To Flip</div>
                 </div>
                 <div class="clearFix"></div>
             </div>
@@ -32,18 +40,79 @@
         <script type="text/javascript" src="js/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
         <script>
         jQuery(document).ready(function(){
+            var todaysFortune = false;
+            if(localStorage.getItem('fortune') != null){
+                fortune = JSON.parse(localStorage.getItem('fortune'));
+                var d = new Date();
+                if(d.getDate() == fortune[10]){
+                    $('.fortune').text(fortune[0]);
+                    $('.left').addClass('open');
+                    $('.right').addClass('open');
+                    $('.leftOverlay').addClass('open');
+                    $('.rightOverlay').addClass('open');
+                    $('.swipeText').addClass('open');
+                    $('.alreadyViewed').addClass('active');
+                    todaysFortune = true;
+
+                    for(var x = 0; x < fortune[2].length; x++){
+                        var y = x + 1;
+                        $('.number' + y).text(fortune[2][x]);
+                    }
+                }
+            }
+            if(todaysFortune == false){
+                $.ajax({
+                   type: "POST",
+                   url:"http://localhost:3000/fortune",
+                   dataType: "json",
+                   success:function(data) {
+                     var data = data[0];
+                     $('.fortune').text(data.message);
+                     var fortune = Array();
+                     fortune[0] = data.message;
+                     var d = new Date();
+                     var numberArray = Array();
+                     var number = Math.floor(Math.random() * 100) + 1;
+                     numberArray.push(number)
+                     $('.number1').text(number);
+
+                     number = Math.floor(Math.random() * 100) + 1;
+                     numberArray.push(number)
+                     $('.number2').text(number);
+
+                     number = Math.floor(Math.random() * 100) + 1;
+                     numberArray.push(number)
+                     $('.number3').text(number);
+
+                     number = Math.floor(Math.random() * 100) + 1;
+                     numberArray.push(number)
+                     $('.number4').text(number);
+
+                     number = Math.floor(Math.random() * 100) + 1;
+                     numberArray.push(number)
+                     $('.number5').text(number);
+                     fortune[1] = d.getDate();
+                     fortune[2] = numberArray;
+                     localStorage.setItem('fortune', JSON.stringify(fortune));
+
+                   }
+                 });
+            }
             // $('p').click(function(){
             //     $('.fortuneText').toggleClass('back');
             //     $('.left').toggleClass('back');
             //     $('.right').toggleClass('back');
             // })
-            $('body').click(function(){
-                var audio = new Audio('cookie.wav');
-                audio.play();
-                $('.left').addClass('open');
-                $('.right').addClass('open');
-                $('.leftOverlay').addClass('open');
-                $('.rightOverlay').addClass('open');
+            $('.left, .right').click(function(){
+                if(!$(this).hasClass('open')){
+                    var audio = new Audio('cookie.wav');
+                    audio.play();
+                    $('.left').addClass('open');
+                    $('.right').addClass('open');
+                    $('.leftOverlay').addClass('open');
+                    $('.rightOverlay').addClass('open');
+                    $('.swipeText').addClass('open');
+                }
             });
 
 
@@ -62,16 +131,6 @@
                   }
                 }
             });
-
-             $.ajax({
-                type: "POST",
-                url:"http://localhost:3000/fortune",
-                dataType: "json",
-                success:function(data) {
-                  var data = data[0];
-                  $('.fortune').text(data.message);
-                }
-              });
         });
         </script>
     </body>
