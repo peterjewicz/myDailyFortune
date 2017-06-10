@@ -10,6 +10,9 @@
   (layout/render
     "home.html" {:fortune (first (db/get-fortune))}))
 
+(defn privacy-page []
+    (layout/render "privacy.html"))
+
 
 
   (defn get-fortune []
@@ -19,4 +22,5 @@
 
 (defroutes home-routes
   (GET "/" [] (home-page))
+  (GET "/privacy" [] (privacy-page))
   (POST "/fortune" [] (get-fortune)))
