@@ -22,6 +22,7 @@
                         <div class="rightOverlay"></div>
                         <p class="fortune"></p>
                         <p class="numbers">
+                            Your Lucky Numbers: </br>
                             <span class="number1"></span>
                             <span class="number2"></span>
                             <span class="number3"></span>
@@ -63,7 +64,7 @@
             if(todaysFortune == false){
                 $.ajax({
                    type: "POST",
-                   url:"http://localhost:3000/fortune",
+                   url:"http://mydailyfortune.totalwebconnections.com/fortune",
                    dataType: "json",
                    success:function(data) {
                      var data = data[0];
@@ -119,16 +120,9 @@
             $(".fortuneWrapper").swipe( {
                 //Generic swipe handler for all directions
                 swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-                  if(direction == "up"){
-                      $('.fortuneText').addClass('back');
-                      $('.left').addClass('back');
-                      $('.right').addClass('back');
-                  }
-                  else if(direction == "down"){
-                      $('.fortuneText').removeClass('back');
-                      $('.left').removeClass('back');
-                      $('.right').removeClass('back');
-                  }
+                      $('.fortuneText').toggleClass('back');
+                      $('.left').toggleClass('back');
+                      $('.right').toggleClass('back');
                 }
             });
         });

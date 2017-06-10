@@ -45,7 +45,7 @@ body,html{
 }
 .right{
     position:absolute;
-    top: 12px;
+    top: 1px;
     right: 21%;
     transition: all 2s;
     width: 121px;
@@ -68,12 +68,13 @@ transform-style: preserve-3d;}
 .fortuneText{
     position: absolute;
     z-index: 5;
-    top: 20px;
+    top: 8px;
     text-align: center;
     transition: all 2s;
     width: 100%;
     min-height: 50px;
     margin: 0 auto;
+    overflow:hidden;
     background-image: url('../paperbg.jpg');
 }
 .fortuneText p{
@@ -84,6 +85,9 @@ transform-style: preserve-3d;}
     z-index:2;
     transition: all 2s;
     height: 50%;
+}
+.fortuneText p.numbers{
+    top: 15px;
 }
 .fortuneText.fortune{opacity: 1;}
 .fortuneText .numbers{opacity: 0;}
@@ -100,20 +104,22 @@ transform-style: preserve-3d;}
     height: 50px;
     background-color: white;
     background-image: url('../pattern.png');
-    transition: all 2.90s ease-out;
+    transition: all 2.40s ease-out;
     position:absolute;
     z-index: 3;
     left: 0;
+    background-size: cover;
 }
 .rightOverlay{
     width: 50%;
     height: 50px;
     background-color: white;
     background-image: url('../pattern.png');
-    transition: all 2.90s ease-out;
+    transition: all 2.40s ease-out;
     z-index: 3;
     position:absolute;
     right: 0;
+    background-size: cover;
 }
 .leftOverlay.open{left:-240px;}
 .rightOverlay.open{right:-240px;}
