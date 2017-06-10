@@ -328,6 +328,7 @@
 				INFOPLIST_FILE = "My Daily Fortune/My Daily Fortune-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.totalwebconnections.myDailyFortune;
 				PRODUCT_NAME = "My Daily Fortune";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,6 +354,7 @@
 				INFOPLIST_FILE = "My Daily Fortune/My Daily Fortune-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.totalwebconnections.myDailyFortune;
 				PRODUCT_NAME = "My Daily Fortune";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
