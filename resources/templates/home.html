@@ -34,6 +34,7 @@
                     <img class="right" src="right.png" />
                     <div class="swipeText"><i class="fa fa-angle-double-up" aria-hidden="true"></i></br>Swipe To Flip</div>
                 </div>
+
                 <div class="clearFix"></div>
             </div>
         </div>
@@ -46,6 +47,7 @@
                 fortune = JSON.parse(localStorage.getItem('fortune'));
                 var d = new Date();
                 if(d.getDate() == fortune[1]){
+                // if(d.getDate() == fortune[10]){
                     $('.fortune').text(fortune[0]);
                     $('.left').addClass('open');
                     $('.right').addClass('open');
