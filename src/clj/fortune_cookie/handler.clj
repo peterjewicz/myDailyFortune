@@ -8,6 +8,7 @@
             [ring.util.response :refer [response]]
             [ring.middleware.cors :refer [wrap-cors]]
             [mount.core :as mount]
+            [ring.middleware.cors :refer [wrap-cors]]
             [fortune-cookie.middleware :as middleware]))
 
 (mount/defstate init-app

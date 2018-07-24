@@ -36,25 +36,25 @@ body,html{
 
 .left{
     position:absolute;
-    left: 21%;
-    top: 0px;
+    left: 9.5%;
+    top: -2px;
     transition: all 2s;
-    width: 119px;
-    z-index: 10;
+    width: 150px;
+    z-index: 12;
     /*display:none;*/
 }
 .right{
     position:absolute;
-    top: 1px;
+    top: -1px;
     right: 21%;
     transition: all 2s;
-    width: 121px;
+    width: 150px;
     z-index: 10;
     /*display:none;*/
 }
 
 .left.open{
-    left: -75px;
+    left: -100px;
 }
 
 .right.open{
@@ -159,9 +159,21 @@ transform-style: preserve-3d;}
 
 @media(max-width: 400px){
     .left{
-        left: 20%;
+        left: 9.5%;
     }
     .right{
-        right: 20%;
+        right: 17%;
+    }
+}
+
+@media(max-width: 360px){
+    .fortuneText p.numbers{
+        top: 0px;
+    }
+    .left{
+        left: 9.5%;
+    }
+    .right{
+        right: 13%;
     }
 }

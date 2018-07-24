@@ -9,6 +9,7 @@
         <link href="https://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
         <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/main.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="cordova.js"></script>
     </head>
     <body>
         <div id="mainWrapper">
@@ -34,6 +35,7 @@
                     <img class="right" src="right.png" />
                     <div class="swipeText"><i class="fa fa-angle-double-up" aria-hidden="true"></i></br>Swipe To Flip</div>
                 </div>
+
                 <div class="clearFix"></div>
             </div>
         </div>
@@ -125,6 +127,40 @@
                       $('.right').toggleClass('back');
                 }
             });
+
+
+
+            //handle ads here
+            var admobid = {};
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady()
+            {
+
+                    if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
+                        admobid = {
+                        banner: 'ca-app-pub-7918336603285970/3405178880', // or DFP format "/6253334/dfp_example_ad"
+                        interstitial: 'ca-app-pub-xxx/yyy'
+                        };
+                    } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+                        admobid = {
+                        banner: 'ca-app-pub-7918336603285970/8868779624', // or DFP format "/6253334/dfp_example_ad"
+                        interstitial: 'ca-app-pub-xxx/kkk'
+                        };
+                    } else { // for windows phone
+                        admobid = {
+                        banner: 'ca-app-pub-xxx/zzz', // or DFP format "/6253334/dfp_example_ad"
+                        interstitial: 'ca-app-pub-xxx/kkk'
+                        };
+                    }
+           
+           
+                    AdMob.createBanner({
+                        adId: admobid.banner,
+                        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+                        autoShow: true });
+            }
+
+
         });
         </script>
     </body>
