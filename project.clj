@@ -16,7 +16,7 @@
                  [metosin/muuntaja "0.2.1"]
                  [metosin/ring-http-response "0.9.0"]
                  [mount "0.1.11"]
-                 [mysql/mysql-connector-java "6.0.5"]
+                 [mysql/mysql-connector-java "8.0.33"]
                  [org.clojure/clojure "1.8.0"]
                  [org.clojure/tools.cli "0.3.5"]
                  [org.clojure/tools.logging "0.3.1"]
